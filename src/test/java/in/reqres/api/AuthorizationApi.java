@@ -23,7 +23,7 @@ public class AuthorizationApi {
     }
 
     @Description("Отправка негативного завпроса на авторизацию")
-    public AuthorizationErrorModel errorAuth(AuthorizationResponseModel requestData){
+    public AuthorizationErrorModel errorAuth(AuthorizationBodyModel requestData){
         return given()
                 .spec(AuthorizationSpec.authorizationRequestSpec)
                 .body(requestData)
