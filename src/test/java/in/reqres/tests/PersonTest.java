@@ -1,8 +1,12 @@
 package in.reqres.tests;
 
 import in.reqres.api.CreatePersonApi;
+import in.reqres.api.DeletePersonApi;
+import in.reqres.api.UpdatePersonApi;
 import in.reqres.models.person.CreatePersonBodyModel;
 import in.reqres.models.person.CreatePersonResponseModel;
+import in.reqres.models.person.UpdatePersonBodyModel;
+import in.reqres.models.person.UpdatePersonResponseModel;
 import io.qameta.allure.*;
 import in.reqres.config.PersonConfig;
 import org.aeonbits.owner.ConfigFactory;
@@ -29,8 +33,8 @@ public class PersonTest extends TestBase{
     String oneMoreUpdateJob = personConfig.oneMoreUpdateJob();
 
     protected CreatePersonApi createPersonApi = new CreatePersonApi();
-//    protected DeletePersonApi deletePersonApi = new DeletePersonApi();
-//    protected UpdatePersonApi updatePersonApi = new UpdatePersonApi();
+    protected DeletePersonApi deletePersonApi = new DeletePersonApi();
+    protected UpdatePersonApi updatePersonApi = new UpdatePersonApi();
 
     @Severity(NORMAL)
     @Test
@@ -63,6 +67,131 @@ public class PersonTest extends TestBase{
         });
     }
 
+    @Severity(NORMAL)
+    @Test
+    @Tag("Smoke")
+    @Tag("CreatePerson")
+    @DisplayName("Проверка успешного создания сотрудника без Name")
+    void successfulCreatePersonWithoutName() {
+
+        final CreatePersonResponseModel successfulCreatePersonWithoutNameResponse = step("Выполнение успешного создания сотрудника без Name", () -> {
+            CreatePersonBodyModel requestData = new CreatePersonBodyModel(null, createJob);
+            return createPersonApi.successCreatePerson(requestData);
+        });
+
+        step("Проверка ответа на запрос об успешном создании сотрудника без Name", () -> {
+            assertThat(successfulCreatePersonWithoutNameResponse.getName())
+                    .as("Значение полученного Name из ответа пустое")
+                    .isNull();
+
+            assertThat(successfulCreatePersonWithoutNameResponse.getJob())
+                    .as("Значение полученной Job из ответа верное")
+                    .isEqualTo("leader");
+
+            assertThat(successfulCreatePersonWithoutNameResponse.getId())
+                    .as("Значение полученного ID из ответа не пустое")
+                    .isNotNull();
+
+            assertThat(successfulCreatePersonWithoutNameResponse.getCreatedAt())
+                    .as("Значение полученного CreatedAt из ответа не пустое")
+                    .isNotNull();
+        });
+    }
+
+    @Severity(NORMAL)
+    @Test
+    @Tag("Smoke")
+    @Tag("CreatePerson")
+    @DisplayName("Проверка успешного создания сотрудника без Job")
+    void successfulCreatePersonWithoutJob() {
+
+        final CreatePersonResponseModel successfulCreatePersonWithoutJobResponse = step("Выполнение успешного создания сотрудника без Job", () -> {
+            CreatePersonBodyModel requestData = new CreatePersonBodyModel(createName, null);
+            return createPersonApi.successCreatePerson(requestData);
+        });
+
+        step("Проверка ответа на запрос об успешном создании сотрудника без Job", () -> {
+            assertThat(successfulCreatePersonWithoutJobResponse.getName())
+                    .as("Значение полученного Name из ответа верное")
+                    .isEqualTo("morpheus");
+
+            assertThat(successfulCreatePersonWithoutJobResponse.getJob())
+                    .as("Значение полученной Job из ответа пустое")
+                    .isNull();
+
+            assertThat(successfulCreatePersonWithoutJobResponse.getId())
+                    .as("Значение полученного ID из ответа не пустое")
+                    .isNotNull();
+
+            assertThat(successfulCreatePersonWithoutJobResponse.getCreatedAt())
+                    .as("Значение полученного CreatedAt из ответа не пустое")
+                    .isNotNull();
+        });
+    }
+
+    @Severity(NORMAL)
+    @Test
+    @Tag("Smoke")
+    @Tag("DeletePerson")
+    @DisplayName("Проверка успешного удаления сотрудника")
+    void successfulDeletePersonTest() {
+
+        step("Отправка запроса на успешное удаление сотрудника", () -> deletePersonApi.deletePerson());
+    }
+
+    @Severity(NORMAL)
+    @Test
+    @Tag("Smoke")
+    @Tag("UpdatePerson")
+    @DisplayName("Проверка успешного обновления данных пользователя через метод PUT")
+    void successfulUpdatePersonWithPutMethodTest() {
+
+        final UpdatePersonResponseModel successUpdatePersonPutResponse = step("Отправка запроса на обновление данных пользователя", () -> {
+            UpdatePersonBodyModel requestData = new UpdatePersonBodyModel(updateName, updateJob);
+            return updatePersonApi.successUpdatePersonPut(requestData);
+        });
+
+        step("Проверка ответа на запрос об успешном обновлении сотрудника с методом PUT", () -> {
+            assertThat(successUpdatePersonPutResponse.getName())
+                    .as("Значение полученного Name из ответа верное")
+                    .isEqualTo("mike");
+
+            assertThat(successUpdatePersonPutResponse.getJob())
+                    .as("Значение полученной Job из ответа верное")
+                    .isEqualTo("developer");
+
+            assertThat(successUpdatePersonPutResponse.getUpdatedAt())
+                    .as("Значение полученного UpdatedAt из ответа не пустое")
+                    .isNotNull();
+        });
+    }
+
+    @Severity(NORMAL)
+    @Test
+    @Tag("Smoke")
+    @Tag("UpdatePerson")
+    @DisplayName("Проверка успешного обновления данных пользователя через метод PATCH")
+    void successfulUpdatePersonWithPatchMethodTest() {
+
+        final UpdatePersonResponseModel successUpdatePersonPatchResponse = step("Отправка запроса на обновление данных пользователя", () -> {
+            UpdatePersonBodyModel requestData = new UpdatePersonBodyModel(oneMoreUpdateName, oneMoreUpdateJob);
+            return updatePersonApi.successUpdatePersonPatch(requestData);
+        });
+
+        step("Проверка ответа на запрос об успешном обновлении сотрудника с методом PATCH", () -> {
+            assertThat(successUpdatePersonPatchResponse.getName())
+                    .as("Значение полученного Name из ответа верное")
+                    .isEqualTo("oleg");
+
+            assertThat(successUpdatePersonPatchResponse.getJob())
+                    .as("Значение полученной Job из ответа верное")
+                    .isEqualTo("designer");
+
+            assertThat(successUpdatePersonPatchResponse.getUpdatedAt())
+                    .as("Значение полученного UpdatedAt из ответа не пустое")
+                    .isNotNull();
+        });
+    }
 
 
 }
