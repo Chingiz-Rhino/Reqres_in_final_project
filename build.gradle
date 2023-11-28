@@ -48,3 +48,56 @@ tasks.withType(Test) {
     useJUnitPlatform()
     systemProperties(System.getProperties())
 }
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+}
+
+task Smoke_Test(type: Test) {
+    useJUnitPlatform {
+        includeTags "Smoke"
+    }
+}
+
+task Authorization_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "Authorization"
+    }
+}
+
+task CreatePerson_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "CreatePerson"
+    }
+}
+
+task DeletePerson_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "DeletePerson"
+    }
+}
+
+task ListResources_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "ListResources"
+    }
+}
+
+task ListPersons_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "ListPersons"
+    }
+}
+
+task Registration_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "Registration"
+    }
+}
+
+task UpdatePerson_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "UpdatePerson"
+    }
+}
