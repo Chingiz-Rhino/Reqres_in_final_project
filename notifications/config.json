@@ -1,0 +1,17 @@
+{
+  "base": {
+    "logo": "",
+    "project": "reqres_in_authotest_project",
+    "environment": "Test",
+    "comment": "test-results",
+    "reportLink": "https://reqres.in/",
+    "language": "en",
+    "allureFolder": "build/reports/allure-report/allureReport",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "6466299586:AAEHl9wv9fSdhZ-dRSAfv0OdRto3xwkvMo0",
+    "chat": "-1001950381186",
+    "replyTo": ""
+  }
+}
