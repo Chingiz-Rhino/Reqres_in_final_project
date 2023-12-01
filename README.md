@@ -70,7 +70,7 @@
 ## <img alt="Jenkins" height="25" src="images/logo/Jenkins.svg" width="25"/> Сборка в [Jenkins](https://jenkins.autotests.cloud/job/reqresin-product-autotests/)
 
 <p align="center">  
-<img src="images/screen/JenkinsMain.png" alt="Jenkins" width="950"/></a>  
+<img src="images/screen/jenkins.png" alt="Jenkins" width="950"/></a>  
 </p>
 
 ## 📋 Параметры сборки в Jenkins:
@@ -92,37 +92,23 @@ gradle clean test
 ## 🖨️ Основная страница отчёта
 
 <p align="center">  
-<img title="Allure Overview Dashboard" src="images/screen/AlMain.png" width="850">  
+<img title="Allure Overview Dashboard" src="images/screen/AllureReport.png" width="850">  
 </p>  
 
 ## 📄 Тест-кейсы
 
 <p align="center">  
-<img title="Allure Tests" src="images/screen/AlCases.png" width="850">   
+<img title="Allure Tests" src="images/screen/AllureSuites.png" width="850">   
 </p>
 
 ## 📊 Графики
 
 <p align="center">   
-<img title="Allure Graphics1" src="images/screen/AlGraph1.png" width="850">  
-<img title="Allure Graphics2" src="images/screen/AlGraph2.png" width="850">  
+<img title="Allure Graphics1" src="images/screen/graphics1.png" width="850">  
+<img title="Allure Graphics2" src="images/screen/graphics2.png" width="850">  
 </p>
 
-<a id="интеграция-с-allure-testops"></a>
 
-## <img alt="Allure_TO" height="25" src="images/logo/Allure_TO.svg" width="25"/> </a>Интеграция с <a target="_blank" href="https://allure.autotests.cloud/project/3737/dashboards">Allure TestOps</a>
-
-## 🖨️ Основная страница отчёта
-
-<p align="center">  
-<img title="Allure TestOps Dashboard" src="images/screen/OpsDashboard.png" width="850">  
-</p>  
-
-## 📄 Автоматизированные тест-кейсы
-
-<p align="center">  
-<img title="Allure Tests" src="images/screen/OpsTestCases.png" width="850">  
-</p>
 
 <a id="интеграция-с-jira"></a>
 
