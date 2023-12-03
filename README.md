@@ -126,7 +126,7 @@ ____
 
 ____
 <p align="center">  
-<img title="TG Overview" src="images/screen/TGMain.png" width="550">  
+<img title="TG Overview" src="images/screen/telegram_bot.png" width="550">  
 </p>
 
 ____
